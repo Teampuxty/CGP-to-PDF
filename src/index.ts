@@ -2,6 +2,13 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 import fs from 'fs';
 import puppeteer from 'puppeteer';
+const chromePath = path.join(
+  process.resourcesPath,
+  'chrome',
+  'win64-139.0.7258.138',
+  'chrome-win64',
+  'chrome.exe'
+);
 import PDFMerger from 'pdf-merger-js';
 import imageSize from 'image-size';
 import { Book } from './modules/Book';
@@ -9,8 +16,8 @@ import { FormatPageTemplate } from './modules/Utilities';
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 500,
-    height: 400,
+    width: 550,
+    height: 550,
     resizable: false,
     maximizable: false,
     fullscreenable: false,
@@ -34,7 +41,10 @@ ipcMain.handle('rip-book', async (event, options) => {
     const bookInstance = new Book({ BookId: book, CloudFront: CloudFrontCookies });
 
     const merger = new PDFMerger();
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      executablePath: chromePath,
+      headless: true,
+    });
     const [page] = await browser.pages();
 
     for (let i = 1; i <= pages; i++) {
