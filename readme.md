@@ -18,11 +18,14 @@ The bookID
   - Found within the url of the book.
     E.G For OCR Computer Science GCSE, the URL is "https://library.cgpbooks.co.uk/digitalaccess/COS43DF/Online/"
     This means the bookID is "COS43DF"
+
 Your Session ID
   - Found within the Dev Console.
     Ctrl (cmd on mac) + Shift + I, then to the Application Tab, then click on cookies, and copy the value of "ASP.NET_SessionId"
+
 Number of pages to download
   - Usually the total number of pages in the book. Used to be able to auto detect this, but CGP has reworked their whole systems.
+
 UNI - Unique identifier for the svg text files.
   - Found within the Dev Console.
     Ctrl (cmd on mac) + Shift + I, then to the Network Tab, then click on any of the pages and copy the uni string at the end of the Request URL (Picture below)
